@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visit Banyumas"
+        android:textSize="18dp"
+        android:textFontWeight="800"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.jama.carouselview.CarouselView
+        android:id="@+id/carousel_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        app:enableSnapping="true"
+        app:scaleOnScroll="false"
+        app:setAutoPlay="false"
+        app:carouselOffset="start"
+        app:indicatorAnimationType="slide"
+        app:indicatorRadius="5"
+        app:indicatorPadding="5"
+        app:indicatorSelectedColor="@color/design_default_color_primary_dark"
+        app:indicatorUnselectedColor="@color/purple_200"
+        app:resource="@layout/item_carousel"
+        app:spacing="-8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+    <ProgressBar
+        tools:visibility="gone"
+        android:id="@+id/pb_carousel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carousel_view"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/pb_carousel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
