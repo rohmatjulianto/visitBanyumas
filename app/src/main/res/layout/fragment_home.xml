@@ -18,6 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/img_btn_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_info_24"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
 
     <com.jama.carouselview.CarouselView
         android:id="@+id/carousel_view"

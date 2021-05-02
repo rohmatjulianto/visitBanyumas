@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/card_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/img_hotel"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:tint="#2F000000"/>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating_hotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:stepSize="0.1"
+            app:layout_constraintEnd_toEndOf="@id/img_hotel"
+           app:layout_constraintBottom_toBottomOf="@id/img_hotel"/>
+
+        <TextView
+            android:id="@+id/tv_title_hotel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:textFontWeight="800"
+            tools:text="sssss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_hotel"/>
+
+        <TextView
+            android:id="@+id/tv_address_hotel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="9sp"
+            tools:text="ssss sdasdas asdasd asdasd asdasd asdas das das dsada das das das as das dsa das da sda"
+            app:layout_constraintStart_toStartOf="@id/tv_title_hotel"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_hotel"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_hotel"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

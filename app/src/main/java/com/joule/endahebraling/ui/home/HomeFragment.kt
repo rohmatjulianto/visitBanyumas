@@ -18,17 +18,23 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import com.jama.carouselview.CarouselViewListener
 import com.joule.endahebraling.R
+import com.joule.endahebraling.Retrofit.DetikApi
+import com.joule.endahebraling.Retrofit.TravelInterface
 import com.joule.endahebraling.databinding.FragmentHomeBinding
 import com.joule.endahebraling.model.ButtonHome
 import com.joule.endahebraling.model.SliderHome
-import kotlin.collections.ArrayList
+import okhttp3.ResponseBody
+import retrofit2.http.GET
+
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
+//    https://travel.detik.com/travel-news
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +48,9 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeViewModel.progress.observe(viewLifecycleOwner, {
-            if (it){
+            if (it) {
                 binding.pbCarousel.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.pbCarousel.visibility = View.GONE
             }
         })
@@ -64,7 +70,7 @@ class HomeFragment : Fragment() {
                     })
                     show()
                 }
-            }else{
+            } else {
                 homeViewModel.setProgress(true)
             }
         })
@@ -73,7 +79,6 @@ class HomeFragment : Fragment() {
             binding.rvItemBtn.adapter = btnAdapter(it)
             binding.rvItemBtn.layoutManager = GridLayoutManager(context, 3)
         })
-
 
         sliderRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -92,12 +97,18 @@ class HomeFragment : Fragment() {
             }
         })
 
+
+
         return view
     }
 
     private class btnAdapter(private val items: ArrayList<ButtonHome>) : RecyclerView.Adapter<btnAdapter.viewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): btnAdapter.viewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_button_home, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(
+                R.layout.item_button_home,
+                parent,
+                false
+            )
             return viewHolder(view)
         }
 
@@ -115,6 +126,6 @@ class HomeFragment : Fragment() {
                 tvTitle.text = buttonHome.name
             }
         }
-
     }
+
 }

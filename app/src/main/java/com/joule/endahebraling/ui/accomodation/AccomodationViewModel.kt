@@ -3,6 +3,7 @@ package com.joule.endahebraling.ui.accomodation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.joule.endahebraling.model.HotelAccomodation
 
 class AccomodationViewModel : ViewModel() {
 
@@ -10,4 +11,10 @@ class AccomodationViewModel : ViewModel() {
         value = "This is dashboard Fragment"
     }
     val text: LiveData<String> = _text
+
+    public val _listHotel = MutableLiveData<ArrayList<HotelAccomodation>>().apply {
+        value = null
+    }
+
+    val listHotel: LiveData<ArrayList<HotelAccomodation>> = _listHotel
 }
