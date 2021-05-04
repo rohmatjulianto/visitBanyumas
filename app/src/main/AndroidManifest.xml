@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.joule.endahebraling">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,15 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VisitBanyumas">
-
+        <activity
+            android:name=".listcontent.DetailContentActivity"
+            android:label="@string/title_activity_detail_destination"
+            android:theme="@style/Theme.VisitBanyumas.NoActionBar"></activity>
+        <activity
+            android:name=".listcontent.ListContentActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".InfoActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.accomodation.DetailHotelActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_detail_hotel"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.VisitBanyumas.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/Theme.VisitBanyumas.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".InfoActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:lineSpacingExtra="8sp"
+            android:text="VISITING BANYUMAS android-based application was made to make it easier for people to get complete information about tourism destinations that are effective, massive, fast, and cheap. Following are the features contained in this application, namely various kinds of tourist villages, tourist objects and their history, religion, culture, calendar of events, accommodation, regional specialities, entrance ticket prices, directions, and traditional musical instruments. Through a user-friendly application that can be downloaded for free on Google PlayStore, the VISITING BANYUMAS application is also expected to help attract tourists to visit the Banyumas area after seeing the completeness of the pictures and explanations contained in the application."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_logo" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_text">
+
+            <ImageView
+                android:id="@+id/img_writer"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_title_writer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Janatin Alliyah"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/card_writer"
+            app:layout_constraintTop_toTopOf="@id/card_writer" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Content Writer"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@id/card_writer"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_writer" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_enginer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_writer">
+
+            <ImageView
+                android:id="@+id/img_enginer"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_title_enginer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Rohmat Julianto"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/card_enginer"
+            app:layout_constraintTop_toTopOf="@id/card_enginer" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Android Developer"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@id/card_enginer"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_enginer" />
+
+
+        <TextView
+            android:id="@+id/tv_title_by"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="By :"
+            android:textAlignment="center"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@id/card_enginer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_pubdar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_by"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/img_pubdar"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:textAlignment="center"
+            android:minLines="3"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:text="Dinas Pemuda, Olah Raga, Kebudayaan, dan Pariwisata Banyumas"
+            app:layout_constraintTop_toBottomOf="@id/card_pubdar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,5 +1,6 @@
 package com.joule.endahebraling.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
@@ -18,23 +22,19 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
 import com.jama.carouselview.CarouselViewListener
+import com.joule.endahebraling.listcontent.ListContentActivity
 import com.joule.endahebraling.R
-import com.joule.endahebraling.Retrofit.DetikApi
-import com.joule.endahebraling.Retrofit.TravelInterface
 import com.joule.endahebraling.databinding.FragmentHomeBinding
 import com.joule.endahebraling.model.ButtonHome
+import com.joule.endahebraling.model.NewsItem
 import com.joule.endahebraling.model.SliderHome
-import okhttp3.ResponseBody
-import retrofit2.http.GET
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
-//    https://travel.detik.com/travel-news
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,6 +80,18 @@ class HomeFragment : Fragment() {
             binding.rvItemBtn.layoutManager = GridLayoutManager(context, 3)
         })
 
+        homeViewModel.news.observe(viewLifecycleOwner, {
+            val rvNews = binding.rvNews
+            if (it != null){
+                rvNews.adapter = NewsAdapter(it.hot)
+                rvNews.setHasFixedSize(true)
+                rvNews.layoutManager = LinearLayoutManager(context)
+                binding.pbNews.visibility = View.GONE
+            }else{
+                binding.pbNews.visibility = View.VISIBLE
+            }
+        })
+
         sliderRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var sliderArr: ArrayList<SliderHome> = ArrayList()
@@ -114,6 +126,11 @@ class HomeFragment : Fragment() {
 
         override fun onBindViewHolder(holder: btnAdapter.viewHolder, position: Int) {
             holder.bind(items.get(position))
+            holder.cardView.setOnClickListener(View.OnClickListener {
+                val intent = Intent(it.context, ListContentActivity::class.java)
+                intent.putExtra(ListContentActivity.EXTRA_TITLE, holder.tvTitle.text.toString())
+                it.context.startActivity(intent)
+            })
         }
 
         override fun getItemCount(): Int {
@@ -121,11 +138,46 @@ class HomeFragment : Fragment() {
         }
 
         class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val cardView = itemView.findViewById<CardView>(R.id.card_parent)
             val tvTitle = itemView.findViewById<TextView>(R.id.tv_title_button)
             fun bind(buttonHome: ButtonHome) {
                 tvTitle.text = buttonHome.name
+                tvTitle.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(itemView.context, buttonHome.path), null, null)
             }
         }
+    }
+
+    private class NewsAdapter(private val item: ArrayList<NewsItem>) : RecyclerView.Adapter<NewsAdapter.viewHolder>(){
+        class viewHolder(itemview: View) : RecyclerView.ViewHolder(itemview){
+            val imgHotel = itemView.findViewById<ImageView>(R.id.img_hotel)
+            val tvTitle = itemView.findViewById<TextView>(R.id.tv_title_hotel)
+            val tvNoImg = itemView.findViewById<TextView>(R.id.tv_no_image)
+
+            fun bind(get: NewsItem) {
+                tvTitle.text = get.title
+                Glide.with(itemView)
+                    .load(get.image_url)
+                    .centerCrop()
+                    .into(imgHotel)
+                if (get.image_url == null){
+                    tvNoImg.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.viewHolder {
+            val view  = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
+            return viewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: viewHolder, position: Int) {
+            holder.bind(item.get(position))
+        }
+
+        override fun getItemCount(): Int {
+           return item.size
+        }
+
     }
 
 }

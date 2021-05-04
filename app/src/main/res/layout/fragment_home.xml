@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/tv_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Visit Banyumas"
-        android:textSize="18dp"
-        android:textFontWeight="800"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/img_btn_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_info_24"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        app:layout_constraintEnd_toEndOf="@id/tv_title"
-        app:layout_constraintTop_toTopOf="@id/tv_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
+        <com.jama.carouselview.CarouselView
+            android:id="@+id/carousel_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            app:carouselOffset="start"
+            app:enableSnapping="true"
+            app:indicatorAnimationType="slide"
+            app:indicatorPadding="5"
+            app:indicatorRadius="5"
+            app:indicatorSelectedColor="@color/design_default_color_primary_dark"
+            app:indicatorUnselectedColor="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resource="@layout/item_carousel"
+            app:scaleOnScroll="false"
+            app:setAutoPlay="false"
+            app:spacing="-8" />
 
-    <com.jama.carouselview.CarouselView
-        android:id="@+id/carousel_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        app:enableSnapping="true"
-        app:scaleOnScroll="false"
-        app:setAutoPlay="false"
-        app:carouselOffset="start"
-        app:indicatorAnimationType="slide"
-        app:indicatorRadius="5"
-        app:indicatorPadding="5"
-        app:indicatorSelectedColor="@color/design_default_color_primary_dark"
-        app:indicatorUnselectedColor="@color/purple_200"
-        app:resource="@layout/item_carousel"
-        app:spacing="-8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+        <ProgressBar
+            android:id="@+id/pb_carousel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carousel_view"
+            tools:visibility="gone" />
 
-    <ProgressBar
-        tools:visibility="gone"
-        android:id="@+id/pb_carousel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carousel_view"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_item_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb_carousel" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_item_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/pb_carousel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tv_title_news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Popular News"
+            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_item_btn" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_news" />
+
+        <ProgressBar
+            android:id="@+id/pb_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_news"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

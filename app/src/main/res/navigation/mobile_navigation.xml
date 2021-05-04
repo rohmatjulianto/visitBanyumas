@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.joule.endahebraling.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Visit Banyumas"
         tools:layout="@layout/fragment_home" />
 
     <fragment

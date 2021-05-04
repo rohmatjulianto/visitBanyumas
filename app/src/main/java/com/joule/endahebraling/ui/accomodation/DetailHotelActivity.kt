@@ -35,10 +35,10 @@ class DetailHotelActivity : AppCompatActivity() {
         setContentView(view)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbarLayout.title = detail.name
+        binding.toolbarLayout.title = detail?.name
 
         Glide.with(this)
-            .load(detail.images?.get(0)?.url)
+            .load(detail?.images?.get(0)?.url)
             .centerCrop()
             .into(binding.imgDetail)
 
