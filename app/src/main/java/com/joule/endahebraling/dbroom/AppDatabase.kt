@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.joule.endahebraling.model.DbClass
 
 
-@Database(entities = arrayOf(DbClass::class), version = 1)
+@Database(entities = arrayOf(DbClass::class), version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun dbDao(): DbDao
 }

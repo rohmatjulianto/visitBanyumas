@@ -9,6 +9,7 @@ import com.joule.endahebraling.R
 import com.joule.endahebraling.Retrofit.DetikApi
 import com.joule.endahebraling.Retrofit.TravelInterface
 import com.joule.endahebraling.model.ButtonHome
+import com.joule.endahebraling.model.DataListContent
 import com.joule.endahebraling.model.ResponseTravelNews
 import com.joule.endahebraling.model.SliderHome
 import okhttp3.ResponseBody
@@ -21,11 +22,11 @@ import retrofit2.http.Headers
 
 class HomeViewModel : ViewModel() {
 
-    private val _listCarousel = MutableLiveData<ArrayList<SliderHome>>().apply {
+    private val _listCarousel = MutableLiveData<ArrayList<DataListContent>>().apply {
         value = null
     }
 
-    fun setListCarousel(list: ArrayList<SliderHome>) {
+    fun setListCarousel(list: ArrayList<DataListContent>) {
         _listCarousel.value = list
     }
 
@@ -66,7 +67,6 @@ class HomeViewModel : ViewModel() {
                 call: Call<ResponseTravelNews>,
                 response: Response<ResponseTravelNews>
             ) {
-                Log.d("yy", "onResponse: " + response.body())
                 value = response.body()
             }
 
@@ -78,7 +78,7 @@ class HomeViewModel : ViewModel() {
     }
 
     val news: LiveData<ResponseTravelNews> = _news
-    val listCarousel: LiveData<ArrayList<SliderHome>> = _listCarousel
+    val listCarousel: LiveData<ArrayList<DataListContent>> = _listCarousel
     val listButton: LiveData<ArrayList<ButtonHome>> = _listButton
     val progress: LiveData<Boolean> = _progress
 }

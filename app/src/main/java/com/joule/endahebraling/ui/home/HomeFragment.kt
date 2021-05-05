@@ -1,6 +1,7 @@
 package com.joule.endahebraling.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,9 +27,12 @@ import com.jama.carouselview.CarouselViewListener
 import com.joule.endahebraling.listcontent.ListContentActivity
 import com.joule.endahebraling.R
 import com.joule.endahebraling.databinding.FragmentHomeBinding
+import com.joule.endahebraling.listcontent.DetailContentActivity
 import com.joule.endahebraling.model.ButtonHome
+import com.joule.endahebraling.model.DataListContent
 import com.joule.endahebraling.model.NewsItem
 import com.joule.endahebraling.model.SliderHome
+import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -44,7 +48,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         val database = Firebase.database;
-        val sliderRef = database.getReference("/homeslider")
+        val sliderRef = database.getReference("/destination").limitToLast(8)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeViewModel.progress.observe(viewLifecycleOwner, {
@@ -54,6 +58,24 @@ class HomeFragment : Fragment() {
                 binding.pbCarousel.visibility = View.GONE
             }
         })
+
+        sliderRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var sliderArr: ArrayList<DataListContent> = ArrayList()
+                for (postSnap in snapshot.children) {
+                    val slider = postSnap.getValue<DataListContent>()
+                    if (slider != null) {
+                        sliderArr.add(slider)
+                    }
+                }
+                homeViewModel.setListCarousel(sliderArr)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("yy", "onCancelled: " + error.message)
+            }
+        })
+
         homeViewModel.listCarousel.observe(viewLifecycleOwner, {
             if (it != null) {
                 homeViewModel.setProgress(false)
@@ -63,10 +85,19 @@ class HomeFragment : Fragment() {
                     autoPlay = false
                     setCarouselViewListener(CarouselViewListener { view, position ->
                         val imageView = view.findViewById<ImageView>(R.id.img_carousel)
+                        val textView = view.findViewById<TextView>(R.id.tv_title)
                         Glide.with(view.context)
-                            .load(it.get(position).image)
+                            .load(it.get(position).images?.get(0)?.url)
                             .centerCrop()
                             .into(imageView)
+                        textView.text = it.get(position).name
+
+                        val datalist = it
+                        imageView.setOnClickListener(View.OnClickListener {
+                            val intent = Intent(it.context, DetailContentActivity::class.java)
+                            intent.putExtra(DetailContentActivity.EXTRA_DATA, datalist.get(position))
+                            it.context.startActivity(intent)
+                        })
                     })
                     show()
                 }
@@ -92,22 +123,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        sliderRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var sliderArr: ArrayList<SliderHome> = ArrayList()
-                for (postSnap in snapshot.children) {
-                    val slider = postSnap.getValue<SliderHome>()
-                    if (slider != null) {
-                        sliderArr.add(slider)
-                    }
-                }
-                homeViewModel.setListCarousel(sliderArr)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("yy", "onCancelled: " + error.message)
-            }
-        })
 
 
 
@@ -172,6 +187,11 @@ class HomeFragment : Fragment() {
 
         override fun onBindViewHolder(holder: viewHolder, position: Int) {
             holder.bind(item.get(position))
+            holder.imgHotel.setOnClickListener(View.OnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(item.get(position).url)
+                it.context.startActivity(intent)
+            })
         }
 
         override fun getItemCount(): Int {

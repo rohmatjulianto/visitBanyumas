@@ -7,10 +7,25 @@
     android:layout_marginStart="@dimen/activity_horizontal_margin"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="10dp">
-        <ImageView
-            android:id="@+id/img_carousel"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="@color/purple_200"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/img_carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="@color/red_600"
+                    tools:ignore="MissingConstraints"
+                    android:tint="#4F000000"/>
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

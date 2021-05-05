@@ -11,12 +11,12 @@ interface DbDao {
     @Query("SELECT * FROM DbClass")
     fun getAll(): List<DbClass>
 
-    @Query("SELECT * FROM DbClass WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<DbClass>
+    @Query("SELECT * FROM DbClass WHERE name IN (:userIds)")
+    fun getByName(userIds: String): DbClass
 
     @Insert
     fun insertAll(vararg data: DbClass)
 
-    @Delete
-    fun delete(data : DbClass)
+    @Query("DELETE FROM DbClass WHERE name = :name")
+    fun delete(name: String)
 }

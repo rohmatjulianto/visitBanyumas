@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.joule.endahebraling.R
 import com.joule.endahebraling.model.DataListContent
+import org.w3c.dom.Text
 
-class ListContentAdapter(val items : ArrayList<DataListContent>) :RecyclerView.Adapter<ListContentAdapter.viewHolder>() {
+class ListContentAdapter(val items: ArrayList<DataListContent>) :
+    RecyclerView.Adapter<ListContentAdapter.viewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -44,12 +47,23 @@ class ListContentAdapter(val items : ArrayList<DataListContent>) :RecyclerView.A
         val img = itemView.findViewById<ImageView>(R.id.img_list)
         val tv = itemView.findViewById<TextView>(R.id.tv_title)
         val card = itemView.findViewById<CardView>(R.id.card_parent)
+
+        val ratingbar = itemView.findViewById<RatingBar>(R.id.rating_hotel)
+
         fun bind(get: DataListContent) {
             Glide.with(itemView)
                 .load(get.images?.get(0)?.url)
                 .centerCrop()
                 .into(img)
             tv.text = get.name
+
+
+            val star = get.star?.toFloatOrNull()
+            if (star != null) {
+                ratingbar.visibility = View.VISIBLE
+                ratingbar.numStars = get.star.toInt()
+                ratingbar.rating = star
+            }
         }
 
     }

@@ -13,6 +13,8 @@ data class DbClass(
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "contact") val contact: String?,
     @ColumnInfo(name = "desc") val desc: String?,
+    @ColumnInfo(name = "star") val star: String?,
+    @ColumnInfo(name = "address") val address: String?,
     @ColumnInfo(name = "maps") val maps: String?,
     @ColumnInfo(name = "images") val images: String?
 ) : Parcelable

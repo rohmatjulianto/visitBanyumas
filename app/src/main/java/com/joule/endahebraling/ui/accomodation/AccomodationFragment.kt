@@ -27,6 +27,8 @@ import com.google.firebase.ktx.Firebase
 import com.joule.endahebraling.R
 import com.joule.endahebraling.databinding.FragmentAccomodationBinding
 import com.joule.endahebraling.databinding.FragmentHomeBinding
+import com.joule.endahebraling.listcontent.DetailContentActivity
+import com.joule.endahebraling.model.DataListContent
 import com.joule.endahebraling.model.HotelAccomodation
 import org.w3c.dom.Text
 import java.util.*
@@ -53,9 +55,9 @@ class AccomodationFragment : Fragment() {
         val thisRef = database.getReference("/hotel")
         thisRef.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                var list : ArrayList<HotelAccomodation> = ArrayList()
+                var list : ArrayList<DataListContent> = ArrayList()
                 for (post in snapshot.children){
-                    val value = post.getValue<HotelAccomodation>()
+                    val value = post.getValue<DataListContent>()
                     if (value != null){
                         list.add(value)
                     }
@@ -81,7 +83,7 @@ class AccomodationFragment : Fragment() {
         return view
     }
 
-    private class HotelAdapter(val items : ArrayList<HotelAccomodation>) : RecyclerView.Adapter<HotelAdapter.viewHolder>(){
+    private class HotelAdapter(val items : ArrayList<DataListContent>) : RecyclerView.Adapter<HotelAdapter.viewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.viewHolder {
             val view  = LayoutInflater.from(parent.context).inflate(R.layout.item_hotel_accomodation, parent, false)
             return viewHolder(view)
@@ -90,8 +92,8 @@ class AccomodationFragment : Fragment() {
         override fun onBindViewHolder(holder: HotelAdapter.viewHolder, position: Int) {
             holder.bind(items.get(position))
             holder.card.setOnClickListener(View.OnClickListener {
-                val intent = Intent(it.context, DetailHotelActivity::class.java)
-                intent.putExtra(DetailHotelActivity.EXTRA_DATA, items.get(position))
+                val intent = Intent(it.context, DetailContentActivity::class.java)
+                intent.putExtra(DetailContentActivity.EXTRA_DATA, items.get(position))
                 it.context.startActivity(intent)
             })
         }
@@ -107,7 +109,7 @@ class AccomodationFragment : Fragment() {
             val tvAddress = itemView.findViewById<TextView>(R.id.tv_address_hotel)
             val card = itemView.findViewById<CardView>(R.id.card_parent)
 
-            fun bind(accomodation: HotelAccomodation) {
+            fun bind(accomodation: DataListContent) {
                 Glide.with(itemView)
                     .load(accomodation.images?.get(0)?.url)
                     .centerCrop()
