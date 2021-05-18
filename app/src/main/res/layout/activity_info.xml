@@ -36,7 +36,7 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:lineSpacingExtra="8sp"
-            android:text="VISITING BANYUMAS android-based application was made to make it easier for people to get complete information about tourism destinations that are effective, massive, fast, and cheap. Following are the features contained in this application, namely various kinds of tourist villages, tourist objects and their history, religion, culture, calendar of events, accommodation, regional specialities, entrance ticket prices, directions, and traditional musical instruments. Through a user-friendly application that can be downloaded for free on Google PlayStore, the VISITING BANYUMAS application is also expected to help attract tourists to visit the Banyumas area after seeing the completeness of the pictures and explanations contained in the application."
+            android:text=" \t \t \t \t VISITING BANYUMAS android-based application was made to make it easier for people to get complete information about tourism destinations that are effective, massive, fast, and cheap. Following are the features contained in this application, namely various kinds of tourist villages, tourist objects and their history, religion, culture, calendar of events, accommodation, regional specialities, entrance ticket prices, directions, and traditional musical instruments. Through a user-friendly application that can be downloaded for free on Google PlayStore, the VISITING BANYUMAS application is also expected to help attract tourists to visit the Banyumas area after seeing the completeness of the pictures and explanations contained in the application."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_logo" />
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             app:cardCornerRadius="@dimen/activity_horizontal_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_text">
@@ -81,7 +81,8 @@
             android:id="@+id/card_enginer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="30dp"
             app:cardCornerRadius="@dimen/activity_horizontal_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_writer">
@@ -143,7 +144,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/activity_horizontal_margin"

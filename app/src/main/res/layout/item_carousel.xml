@@ -13,7 +13,7 @@
                 <ImageView
                     android:id="@+id/img_carousel"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="180dp"
                     android:background="@color/red_600"
                     tools:ignore="MissingConstraints"
                     android:tint="#4F000000"/>
